@@ -1,12 +1,19 @@
 <template>
-<h1>Here be player</h1>
+<div>
+  <h1>Here be player</h1>
+  <metadata></metadata>
+</div>
 </template>
 
 <script>
 import {Howl, Howler} from 'howler'
+import Metadata from '@/components/Metadata'
 
 export default {
   name: 'Player',
+  components: {
+    Metadata
+  },
   methods: {
     initializePlayer: function () {
       const sound = new Howl({
