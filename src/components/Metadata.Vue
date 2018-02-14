@@ -17,7 +17,6 @@ export default {
     loadMetadata: function () {
       axios.get('/api/Metadata')
         .then((response) => {
-          console.log(response.data)
           this.songTitle = response.data
         })
         .catch((error) => {
@@ -30,7 +29,7 @@ export default {
 
     setInterval(function () {
       this.loadMetadata()
-    }.bind(this), 3000)
+    }.bind(this), 3000000)
   }
 }
 </script>

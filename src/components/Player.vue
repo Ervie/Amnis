@@ -1,30 +1,38 @@
 <template>
 <div>
-  <h1>Here be player</h1>
-  <metadata></metadata>
 </div>
 </template>
 
 <script>
 import {Howl, Howler} from 'howler'
-import Metadata from '@/components/Metadata'
 
 export default {
   name: 'Player',
-  components: {
-    Metadata
+  props: ['isPlaying', 'stationUrl'],
+  data () {
+    return {
+      sound: new Howl({src: ['http://radio.vgmradio.com:8040/stream']})
+    }
   },
   methods: {
-    initializePlayer: function () {
-      const sound = new Howl({
+    initializePlayer () {
+      this.sound = new Howl({
         src: ['http://radio.vgmradio.com:8040/stream'],
         ext: ['mp3'],
         autoplay: true,
         html5: true
       })
-      sound.play()
-
+      this.sound.play()
       Howler.volume(0.25)
+    }
+  },
+  watch: {
+    isPlaying: function () {
+      if (this.isPlaying) {
+        this.sound.play()
+      } else {
+        this.sound.pause()
+      }
     }
   },
   beforeMount () {
