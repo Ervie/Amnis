@@ -24,7 +24,7 @@ export default {
       })
       sound.play()
 
-      Howler.volume(0.5)
+      Howler.volume(0.25)
     }
   },
   beforeMount () {

@@ -1,28 +1,28 @@
 <template>
-<div> {{data}}  </div>
+<div v-text="songTitle">}  </div>
 </template>
 
 <script>
-import icy from 'icy'
+import axios from 'axios'
 
 export default {
   name: 'Metadata',
   data () {
     return {
       stationUrl: 'http://radio.vgmradio.com:8040/stream',
-      data: 'TestMeta'
+      songTitle: 'TestMeta'
     }
   },
   methods: {
     loadMetadata: function () {
-      icy.get(this.stationUrl, function (res) {
-        console.log(res.headers)
-        res.on('metadata', function (metadata) {
-          var parsed = icy.parse(metadata)
-          console.log(parsed.StreamTitle)
-          this.data = parsed
+      axios.get('/api/Metadata')
+        .then((response) => {
+          console.log(response.data)
+          this.songTitle = response.data
         })
-      })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
   created: function () {
@@ -30,7 +30,7 @@ export default {
 
     setInterval(function () {
       this.loadMetadata()
-    }.bind(this), 300000)
+    }.bind(this), 3000)
   }
 }
 </script>
