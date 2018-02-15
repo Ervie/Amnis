@@ -17,18 +17,24 @@ export default {
   computed: {
     isPlaying () {
       return this.$store.getters.getIsPlaying
+    },
+    currentStationUrl () {
+      return this.$store.getters.getCurrentStationUrl
+    },
+    volume () {
+      return this.$store.getters.getVolume
     }
   },
   methods: {
     initializePlayer () {
       this.sound = new Howl({
-        src: ['http://radio.vgmradio.com:8040/stream'],
+        src: [this.currentStationUrl],
         ext: ['mp3'],
         autoplay: true,
         html5: true
       })
       this.sound.play()
-      Howler.volume(0.25)
+      Howler.volume(this.volume)
     }
   },
   watch: {

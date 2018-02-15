@@ -9,8 +9,12 @@ export default {
   name: 'Metadata',
   data () {
     return {
-      stationUrl: 'http://radio.vgmradio.com:8040/stream',
       songTitle: 'CurrentSongTitle'
+    }
+  },
+  computed: {
+    currentStationUrl () {
+      return this.$store.getters.getCurrentStationUrl
     }
   },
   methods: {

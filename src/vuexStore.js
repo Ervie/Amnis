@@ -5,9 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentStationUrl: 'currentStationUrl',
+    currentStationUrl: 'http://eurobeat.stream.laut.fm/eurobeat?ref=radiode&t302=2018-02-15_17-52-03&uuid=d61a2c85-f5f1-4bdc-9809-82cdd9e6c8cb',
     isPlaying: true,
-    volume: 0.5
+    volume: 0.05
   },
   getters: {
     getCurrentStationUrl: state => state.currentStationUrl,

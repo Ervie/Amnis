@@ -38,6 +38,9 @@ export default {
   computed: {
     isPlaying () {
       return this.$store.getters.getIsPlaying
+    },
+    currentStationUrl () {
+      return this.$store.getters.getCurrentStationUrl
     }
   },
   components: {
