@@ -1,11 +1,27 @@
+using API.Model;
 using API.Utilities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     public class MetadataController : Controller
     {
+        private readonly ICollection<RadioStation> _radioStations;
+
+        private readonly JSONSerializer _serializer;
+
+
+        public MetadataController(JSONSerializer serializer)
+        {
+            _serializer = serializer;
+
+            _radioStations = _serializer.LoadFromFile<RadioStation>("radioStationList.json");
+        }
+
         // GET api/metadata
         [HttpGet]
         public string Get()
@@ -17,7 +33,9 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            RadioStation selectedStation = _radioStations.FirstOrDefault(x => x.Id.Equals(id));
+
+            return selectedStation == null ? string.Empty : MetadataWorker.SendRequest(selectedStation.ChannelUrl);
         }
 
         // POST api/metadata
