@@ -10,7 +10,7 @@ export default {
   data () {
     return {
       stationUrl: 'http://radio.vgmradio.com:8040/stream',
-      songTitle: 'TestMeta'
+      songTitle: 'CurrentSongTitle'
     }
   },
   methods: {
@@ -21,15 +21,19 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+          this.songTitle = ''
         })
     }
   },
-  created: function () {
+  timers: {
+    loadMetadata: {
+      time: 10000,
+      repeat: true,
+      autostart: true
+    }
+  },
+  created () {
     this.loadMetadata()
-
-    setInterval(function () {
-      this.loadMetadata()
-    }.bind(this), 3000000)
   }
 }
 </script>
