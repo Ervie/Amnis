@@ -29,11 +29,9 @@ export default {
     loadMetadata: {
       time: 10000,
       repeat: true,
-      autostart: true
+      autostart: true,
+      immediate: true
     }
-  },
-  created () {
-    this.loadMetadata()
   }
 }
 </script>

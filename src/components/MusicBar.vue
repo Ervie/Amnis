@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
-    <player id="mainPlayer" :isPlaying="isPlaying" :stationUrl="currentStation"></player>
+    <player id="mainPlayer" :stationUrl="currentStation"></player>
     <v-bottom-nav absolute :value="true" color:>
 
       <v-list-tile-content grid-list-md>
@@ -32,8 +32,12 @@ export default {
   data () {
     return {
       currentStation: 'http://radio.vgmradio.com:8040/stream',
-      isPlaying: true,
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  computed: {
+    isPlaying () {
+      return this.$store.getters.getIsPlaying
     }
   },
   components: {
@@ -42,7 +46,7 @@ export default {
   },
   methods: {
     togglePlayPause () {
-      this.isPlaying = !this.isPlaying
+      this.$store.dispatch('togglePlaying', !this.isPlaying)
     }
   }
 }

@@ -8,10 +8,15 @@ import {Howl, Howler} from 'howler'
 
 export default {
   name: 'Player',
-  props: ['isPlaying', 'stationUrl'],
+  props: ['stationUrl'],
   data () {
     return {
       sound: new Howl({src: ['http://radio.vgmradio.com:8040/stream']})
+    }
+  },
+  computed: {
+    isPlaying () {
+      return this.$store.getters.getIsPlaying
     }
   },
   methods: {
