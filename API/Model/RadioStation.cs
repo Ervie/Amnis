@@ -7,5 +7,7 @@ namespace API.Model
         public string ChannelName { get; set; }
 
         public string ChannelUrl { get; set; }
+
+        public bool HasMetadata { get; set; }
     }
 }

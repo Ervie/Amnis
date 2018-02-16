@@ -2,11 +2,25 @@
     {
         "Id": 1,
         "ChannelName": "VGM Radio",
-        "ChannelUrl": "http://radio.vgmradio.com:8040/stream"
+        "ChannelUrl": "http://radio.vgmradio.com:8040/stream",
+        "HasMetadata": "true"
     },
     {
         "Id": 2,
         "ChannelName": "Eurobeat Radio",
-        "ChannelUrl": "http://eurobeat.stream.laut.fm/eurobeat?ref=radiode&t302=2018-02-15_17-52-03&uuid=d61a2c85-f5f1-4bdc-9809-82cdd9e6c8cb"
+        "ChannelUrl": "http://eurobeat.stream.laut.fm/eurobeat?ref=radiode&t302=2018-02-15_17-52-03&uuid=d61a2c85-f5f1-4bdc-9809-82cdd9e6c8cb",
+        "HasMetadata": "true"
+    },
+    {
+        "Id": 3,
+        "ChannelName": "RPGamers Network Radio",
+        "ChannelUrl": "http://stream.rpgamers.net:8000/rpgn?_=1428837997C",
+        "HasMetadata": "true"
+    },
+    {
+        "Id": 4,
+        "ChannelName": "RMF Game Music",
+        "ChannelUrl": "http://185.69.192.87/GAMEMUSIC",
+        "HasMetadata": "false"
     }
 ]
