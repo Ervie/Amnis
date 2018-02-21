@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
     <player id="mainPlayer"></player>
-    <v-bottom-nav absolute :value="true">
+    <v-bottom-nav absolute :value="true" >
       <v-list-tile-content grid-list-md>
          <v-list-tile-title>
            {{ currentChannel.name }}
          </v-list-tile-title>
-         <v-list-tile-title>
-           <metadata />
-         </v-list-tile-title>
+         <v-list-tile-sub-title>
+           <metadata :hasMetadata="currentChannel.hasMetadata" />
+         </v-list-tile-sub-title>
       </v-list-tile-content>
       <v-list-tile-content>
           <v-slider prepend-icon="volume_up"  step="1" v-model="volumeBar" dark />

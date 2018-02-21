@@ -20,7 +20,13 @@
     {
         "Id": 4,
         "ChannelName": "RMF Game Music",
-        "ChannelUrl": "http://185.69.192.87/GAMEMUSIC",
+        "ChannelUrl": "http://195.150.20.7/GAMEMUSIC",
         "HasMetadata": "false"
+    },
+    {
+        "Id": 5,
+        "ChannelName": "Radio Rivendell",
+        "ChannelUrl": "http://radiorivendell.ddns.net:8000/128kbit.mp3",
+        "HasMetadata": "true"
     }
 ]

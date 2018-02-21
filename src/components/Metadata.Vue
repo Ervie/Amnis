@@ -1,5 +1,5 @@
 <template>
-<div v-text="songTitle">}  </div>
+<div v-if="hasMetadata" v-text="songTitle">}  </div>
 </template>
 
 <script>
@@ -7,6 +7,7 @@ import axios from 'axios'
 
 export default {
   name: 'Metadata',
+  props: ['hasMetadata'],
   data () {
     return {
       songTitle: 'CurrentSongTitle'
@@ -19,14 +20,16 @@ export default {
   },
   methods: {
     loadMetadata: function () {
-      axios.get('/api/Metadata/' + this.currentChannelId)
-        .then((response) => {
-          this.songTitle = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-          this.songTitle = ''
-        })
+      if (this.hasMetadata) {
+        axios.get('/api/Metadata/' + this.currentChannelId)
+          .then((response) => {
+            this.songTitle = response.data
+          })
+          .catch((error) => {
+            console.log(error)
+            this.songTitle = ''
+          })
+      }
     }
   },
   timers: {
