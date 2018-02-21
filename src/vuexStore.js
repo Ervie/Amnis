@@ -5,9 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentStationUrl: 'http://eurobeat.stream.laut.fm/eurobeat?ref=radiode&t302=2018-02-15_17-52-03&uuid=d61a2c85-f5f1-4bdc-9809-82cdd9e6c8cb',
+    currentStationUrl: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
     isPlaying: true,
-    volume: 0.05
+    volume: 0.15
   },
   getters: {
     getCurrentStationUrl: state => state.currentStationUrl,
@@ -18,11 +18,17 @@ export default new Vuex.Store({
     togglePlaying (state, bool) {
       if (bool) state.isPlaying = bool
       else state.isPlaying = !state.isPlaying
+    },
+    changeVolume (state, integer) {
+      state.volume = integer
     }
   },
   actions: {
     togglePlaying: (context, payload) => {
       context.commit('togglePlaying', payload)
+    },
+    changeVolume: (context, payload) => {
+      context.commit('changeVolume', payload)
     }
   }
 })

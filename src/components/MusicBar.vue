@@ -1,10 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
     <player id="mainPlayer" :stationUrl="currentStation"></player>
-    <v-bottom-nav absolute :value="true" color:>
-
+    <v-bottom-nav absolute :value="true">
       <v-list-tile-content grid-list-md>
          <v-list-tile-title>
            {{ currentStation }}
@@ -12,6 +9,9 @@
          <v-list-tile-title>
            <metadata :stationUrl="currentStation" />
          </v-list-tile-title>
+      </v-list-tile-content>
+      <v-list-tile-content>
+          <v-slider prepend-icon="volume_up"  step="1" v-model="volumeBar" dark />
       </v-list-tile-content>
       <v-list-tile-action>
         <v-btn flat color="teal" v-on:click="togglePlayPause">
@@ -32,6 +32,7 @@ export default {
   data () {
     return {
       currentStation: 'http://radio.vgmradio.com:8040/stream',
+      volumeBar: this.$store.getters.getVolume * 100,
       msg: 'Welcome to Your Vue.js App'
     }
   },
@@ -50,6 +51,11 @@ export default {
   methods: {
     togglePlayPause () {
       this.$store.dispatch('togglePlaying', !this.isPlaying)
+    }
+  },
+  watch: {
+    volumeBar: function (newVal, oldVal) {
+      this.$store.commit('changeVolume', newVal / 100)
     }
   }
 }

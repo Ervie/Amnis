@@ -11,7 +11,7 @@ export default {
   props: ['stationUrl'],
   data () {
     return {
-      sound: new Howl({src: ['http://radio.vgmradio.com:8040/stream']})
+      sound: new Howl({src: ['']})
     }
   },
   computed: {
@@ -44,6 +44,9 @@ export default {
       } else {
         this.sound.pause()
       }
+    },
+    volume: function () {
+      Howler.volume(this.volume)
     }
   },
   beforeMount () {
