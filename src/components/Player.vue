@@ -39,9 +39,9 @@ export default {
   watch: {
     isPlaying: function () {
       if (this.isPlaying) {
-        this.sound.play()
+        this.sound.mute(false)
       } else {
-        this.sound.pause()
+        this.sound.mute(true)
       }
     },
     volume: function () {
