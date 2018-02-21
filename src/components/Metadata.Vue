@@ -13,13 +13,13 @@ export default {
     }
   },
   computed: {
-    currentStationUrl () {
-      return this.$store.getters.getCurrentStationUrl
+    currentChannelId () {
+      return this.$store.getters.getCurrentChannelId
     }
   },
   methods: {
     loadMetadata: function () {
-      axios.get('/api/Metadata')
+      axios.get('/api/Metadata/' + this.currentChannelId)
         .then((response) => {
           this.songTitle = response.data
         })

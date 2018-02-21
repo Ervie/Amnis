@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <player id="mainPlayer" :stationUrl="currentStation"></player>
+    <player id="mainPlayer"></player>
     <v-bottom-nav absolute :value="true">
       <v-list-tile-content grid-list-md>
          <v-list-tile-title>
-           {{ currentStation }}
+           {{ currentChannel.name }}
          </v-list-tile-title>
          <v-list-tile-title>
-           <metadata :stationUrl="currentStation" />
+           <metadata />
          </v-list-tile-title>
       </v-list-tile-content>
       <v-list-tile-content>
@@ -26,22 +26,24 @@
 <script>
 import Player from '@/components/Player'
 import Metadata from '@/components/Metadata'
+import axios from 'axios'
 
 export default {
   name: 'MusicBar',
   data () {
     return {
-      currentStation: 'http://radio.vgmradio.com:8040/stream',
-      volumeBar: this.$store.getters.getVolume * 100,
-      msg: 'Welcome to Your Vue.js App'
+      currentChannel: {
+        name: '',
+        url: '',
+        id: -1,
+        hasMetadata: false
+      },
+      volumeBar: this.$store.getters.getVolume * 100
     }
   },
   computed: {
     isPlaying () {
       return this.$store.getters.getIsPlaying
-    },
-    currentStationUrl () {
-      return this.$store.getters.getCurrentStationUrl
     }
   },
   components: {
@@ -57,6 +59,21 @@ export default {
     volumeBar: function (newVal, oldVal) {
       this.$store.commit('changeVolume', newVal / 100)
     }
+  },
+  created: function () {
+    axios.get('/api/Channel/' + this.$store.getters.getCurrentChannelId)
+      .then((response) => {
+        this.currentChannel.name = response.data.channelName
+        this.currentChannel.id = response.data.id
+        this.currentChannel.url = response.data.channelUrl
+        this.currentChannel.hasMetadata = response.data.hasMetadata
+
+        this.$store.commit('updateChannel', {'newId': this.currentChannel.id, 'newUrl': this.currentChannel.url})
+      })
+      .catch((error) => {
+        console.log(error)
+        this.currentChannel.name = ''
+      })
   }
 }
 </script>

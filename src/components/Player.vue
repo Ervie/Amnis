@@ -8,7 +8,6 @@ import {Howl, Howler} from 'howler'
 
 export default {
   name: 'Player',
-  props: ['stationUrl'],
   data () {
     return {
       sound: new Howl({src: ['']})
@@ -18,17 +17,17 @@ export default {
     isPlaying () {
       return this.$store.getters.getIsPlaying
     },
-    currentStationUrl () {
-      return this.$store.getters.getCurrentStationUrl
-    },
     volume () {
       return this.$store.getters.getVolume
+    },
+    channelUrl () {
+      return this.$store.getters.getCurrentChannelUrl
     }
   },
   methods: {
     initializePlayer () {
       this.sound = new Howl({
-        src: [this.currentStationUrl],
+        src: [this.channelUrl],
         ext: ['mp3'],
         autoplay: true,
         html5: true
@@ -47,9 +46,19 @@ export default {
     },
     volume: function () {
       Howler.volume(this.volume)
+    },
+    channelUrl: function () {
+      this.sound.pause()
+      this.sound = new Howl({
+        src: [this.channelUrl],
+        ext: ['mp3'],
+        autoplay: true,
+        html5: true
+      })
+      this.sound.play()
     }
   },
-  beforeMount () {
+  mounted () {
     this.initializePlayer()
   }
 }
