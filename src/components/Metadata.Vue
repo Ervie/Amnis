@@ -10,7 +10,7 @@ export default {
   props: ['hasMetadata'],
   data () {
     return {
-      songTitle: 'CurrentSongTitle'
+      songTitle: ''
     }
   },
   computed: {
