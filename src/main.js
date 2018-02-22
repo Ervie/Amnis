@@ -5,11 +5,13 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import Vuetify from 'vuetify'
+import VueTimers from 'vue-timers'
 import 'vuetify/dist/vuetify.min.css'
 import store from './vuexStore'
 
 Vue.use(VueResource)
 Vue.use(Vuetify)
+Vue.use(VueTimers)
 
 Vue.config.productionTip = false
 

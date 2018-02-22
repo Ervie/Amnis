@@ -1,12 +1,21 @@
 <template>
   <v-app id="v-app" dark>
-    <router-view/>
+    <app-navbar/>
+    <router-view />
+    <app-musicbar/>
   </v-app>
 </template>
 
 <script>
+import MusicBar from './components/MusicBar'
+import NavBar from './components/NavBar'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'app-navbar': NavBar,
+    'app-musicbar': MusicBar
+  }
 }
 </script>
 
@@ -15,11 +24,8 @@ export default {
 
 #v-app {
   font-family: 'Exo', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
-  margin-top: 60px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

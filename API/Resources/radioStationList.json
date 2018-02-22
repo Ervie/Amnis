@@ -28,5 +28,11 @@
         "ChannelName": "Radio Rivendell",
         "ChannelUrl": "http://radiorivendell.ddns.net:8000/128kbit.mp3",
         "HasMetadata": "true"
-    }
+    },
+    {
+        "Id": 6,
+        "ChannelName": "Nightwave Plaza",
+        "ChannelUrl": "https://plaza.one/mp3",
+        "HasMetadata": true
+    }   
 ]
