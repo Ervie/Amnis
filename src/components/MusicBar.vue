@@ -26,7 +26,7 @@
 <script>
 import Player from '@/components/Player'
 import Metadata from '@/components/Metadata'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'MusicBar',
@@ -61,19 +61,11 @@ export default {
     }
   },
   created: function () {
-    axios.get('/api/Channel/' + this.$store.getters.getCurrentChannelId)
-      .then((response) => {
-        this.currentChannel.name = response.data.channelName
-        this.currentChannel.id = response.data.id
-        this.currentChannel.url = response.data.channelUrl
-        this.currentChannel.hasMetadata = response.data.hasMetadata
-
-        this.$store.commit('updateChannel', {'newId': this.currentChannel.id, 'newUrl': this.currentChannel.url})
-      })
-      .catch((error) => {
-        console.log(error)
-        this.currentChannel.name = ''
-      })
+    this.currentChannel.name = 'VGM Radio'
+    this.currentChannel.id = 1
+    this.currentChannel.url = 'http://radio.vgmradio.com:8040/stream'
+    this.currentChannel.hasMetadata = true
+    this.$store.commit('updateChannel', {'newId': this.currentChannel.id, 'newUrl': this.currentChannel.url})
   }
 }
 </script>

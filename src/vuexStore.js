@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentChannelId: 3,
+    currentChannelId: 1,
     currentChannelUrl: '',
     isPlaying: true,
     volume: 0.15

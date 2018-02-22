@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import icy from 'icy'
 
 export default {
   name: 'Metadata',
@@ -21,14 +21,13 @@ export default {
   methods: {
     loadMetadata: function () {
       if (this.hasMetadata) {
-        axios.get('/api/Metadata/' + this.currentChannelId)
-          .then((response) => {
-            this.songTitle = response.data
+        icy.get(this.$store.getters.getCurrentChannelUrl, function (res) {
+          console.error(res.headers)
+          res.on('metadata', function (metadata) {
+            var parsed = icy.parse(metadata)
+            console.error(parsed)
           })
-          .catch((error) => {
-            console.log(error)
-            this.songTitle = ''
-          })
+        })
       }
     }
   },
