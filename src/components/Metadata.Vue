@@ -39,6 +39,9 @@ export default {
       autostart: true,
       immediate: true
     }
+  },
+  created () {
+    this.loadMetadata()
   }
 }
 </script>

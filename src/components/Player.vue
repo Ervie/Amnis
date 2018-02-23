@@ -29,19 +29,18 @@ export default {
       this.sound = new Howl({
         src: [this.channelUrl],
         ext: ['mp3'],
-        autoplay: true,
+        autoplay: false,
         html5: true
       })
-      this.sound.play()
       Howler.volume(this.volume)
     }
   },
   watch: {
     isPlaying: function () {
       if (this.isPlaying) {
-        this.sound.mute(false)
+        this.sound.play()
       } else {
-        this.sound.mute(true)
+        this.sound.pause()
       }
     },
     volume: function () {
@@ -52,10 +51,10 @@ export default {
       this.sound = new Howl({
         src: [this.channelUrl],
         ext: ['mp3'],
-        autoplay: true,
+        autoplay: false,
         html5: true
       })
-      this.sound.play()
+      this.$store.dispatch('togglePlaying', false)
     }
   },
   mounted () {

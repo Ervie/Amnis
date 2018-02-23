@@ -3,7 +3,7 @@
     <v-toolbar fixed dense>
         <v-spacer> </v-spacer>
         <v-toolbar-items>
-            <v-btn class="hidden-sm-and-down" flat @click="aboutDialog = true">
+            <v-btn flat @click="aboutDialog = true">
                 About
             </v-btn>
         </v-toolbar-items>
@@ -12,9 +12,10 @@
     <v-dialog v-model="aboutDialog" max-width="400">
       <v-card>
         <v-card-title class="headline" style="font-weight: bold">Author: Bartłomiej Buchała (Ervie)</v-card-title>
-        <v-card-media src="static/logo.png" height="350px"></v-card-media>
+        <v-card-media src="static/tanya.png" height="350px"></v-card-media>
         <v-card-text>
-          <p>Simple radio streaming website. Currently for educational purpose.</p>
+          <p>Simple radio streaming website. Currently in development for self-teaching purpose.</p>
+          <p>Source code can be found <a href="https://github.com/Ervie/Amnis">here.</a></p>
         </v-card-text>
       </v-card>
     </v-dialog>
