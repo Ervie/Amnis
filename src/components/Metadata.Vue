@@ -21,7 +21,7 @@ export default {
   methods: {
     loadMetadata: function () {
       if (this.hasMetadata) {
-        axios.get('/api/Metadata/' + this.currentChannelId)
+        axios.get(process.env.API_URL + '/api/Metadata/' + this.currentChannelId)
           .then((response) => {
             this.songTitle = response.data
           })

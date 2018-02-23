@@ -1,6 +1,10 @@
-# amnis
+# Amnis
 
-> A simple radio streamer. Currently for educational purpose only. 
+> Amnis (stream in latin) is a simple radio streamer. Currently for educational purpose only, application is in development and lack crucial features.
+
+# Demo
+
+> Demo of current version can be checked under this [link](https://amnis.azurewebsites.net/#/)
 
 ## Build Setup
 

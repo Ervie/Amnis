@@ -61,7 +61,7 @@ export default {
     }
   },
   created: function () {
-    axios.get('/api/Channel/' + this.$store.getters.getCurrentChannelId)
+    axios.get(process.env.API_URL + '/api/Channel/' + this.$store.getters.getCurrentChannelId)
       .then((response) => {
         this.currentChannel.name = response.data.channelName
         this.currentChannel.id = response.data.id
