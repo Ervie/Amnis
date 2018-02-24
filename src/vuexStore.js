@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     currentChannelId: 3,
     currentChannelUrl: '',
-    isPlaying: true,
+    isPlaying: false,
     volume: 0.15
   },
   getters: {

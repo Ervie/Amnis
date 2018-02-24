@@ -33,6 +33,6 @@
         "Id": 6,
         "ChannelName": "Nightwave Plaza",
         "ChannelUrl": "https://plaza.one/mp3",
-        "HasMetadata": true
+        "HasMetadata": "true"
     }   
 ]

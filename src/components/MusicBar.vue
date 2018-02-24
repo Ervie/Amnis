@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <player id="mainPlayer"></player>
     <v-bottom-nav absolute :value="true" tile>
       <v-list-tile-content grid-list-md>
          <v-list-tile-title>
@@ -34,9 +33,9 @@
 </template>
 
 <script>
-import Player from '@/components/Player'
 import Metadata from '@/components/Metadata'
 import axios from 'axios'
+import {Howl, Howler} from 'howler'
 
 export default {
   name: 'MusicBar',
@@ -48,7 +47,8 @@ export default {
         id: -1,
         hasMetadata: true
       },
-      volumeBar: this.$store.getters.getVolume * 100
+      volumeBar: this.$store.getters.getVolume * 100,
+      sound: new Howl({src: ['']})
     }
   },
   computed: {
@@ -57,12 +57,16 @@ export default {
     }
   },
   components: {
-    Player,
     Metadata
   },
   methods: {
     togglePlayPause () {
       this.$store.dispatch('togglePlaying', !this.isPlaying)
+      if (this.isPlaying) {
+        this.sound.play()
+      } else {
+        this.sound.pause()
+      }
     },
     setMinVolume () {
       this.volumeBar = 0
@@ -71,11 +75,20 @@ export default {
     setMaxVolume () {
       this.volumeBar = 100
       this.$store.dispatch('changeVolume', 1.0)
+    },
+    initializePlayer () {
+      this.sound = new Howl({
+        src: [this.currentChannel.url],
+        ext: ['mp3'],
+        html5: true
+      })
+      Howler.volume(this.volumeBar / 100)
     }
   },
   watch: {
     volumeBar: function (newVal, oldVal) {
       this.$store.commit('changeVolume', newVal / 100)
+      Howler.volume(this.volumeBar / 100)
     }
   },
   created: function () {
@@ -87,6 +100,7 @@ export default {
         this.currentChannel.hasMetadata = response.data.hasMetadata
 
         this.$store.commit('updateChannel', {'newId': this.currentChannel.id, 'newUrl': this.currentChannel.url})
+        this.initializePlayer()
       })
       .catch((error) => {
         console.log(error)
