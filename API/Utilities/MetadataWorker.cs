@@ -15,7 +15,8 @@ namespace API.Utilities
                 var request = (HttpWebRequest)WebRequest.Create(channelUrl);
                 request.Headers.Clear();
                 request.Headers.Add("GET", " HTTP/1.0");
-                request.Headers.Add("Icy-MetaData", "1"); // Necessary to receive metadata with song title.
+                // Necessary to receive metadata with song title.
+                request.Headers.Add("Icy-MetaData", "1");
                 request.UserAgent = "WinampMPEG/5.09";
                 var response = (HttpWebResponse)(request.GetResponse());
 
@@ -37,13 +38,25 @@ namespace API.Utilities
                 if (string.IsNullOrWhiteSpace(metadataHeader))
                     return string.Empty;
 
-                string channelMetadata = metadataHeader.Split('\'')[1];
+                string[] metadataChunks = metadataHeader.Split('\'');
 
+                string channelMetadata = string.Empty;
+
+                // Skip not needed parts (first and last)
+                for (int i = 1; i < metadataChunks.Length - 1; i++)
+                {
+                    // Some channel contain extra expendable informations at the end
+                    if (metadataChunks[i].Equals(";StreamUrl="))
+                        break;
+
+                    channelMetadata += metadataChunks[i];
+                }
+                
                 return channelMetadata;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                return e.Message;
+                return string.Empty;
             }
         }
 
