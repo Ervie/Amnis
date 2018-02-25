@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     currentChannelId () {
-      return this.$store.getters.getCurrentChannelId
+      return this.$store.getters.getCurrentChannel.id
     }
   },
   methods: {

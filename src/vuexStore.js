@@ -5,14 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentChannelId: 3,
-    currentChannelUrl: '',
+    currentChannel: {
+      name: 'RPGamers Network Radio',
+      url: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
+      id: 3,
+      hasMetadata: true
+    },
     isPlaying: false,
     volume: 0.15
   },
   getters: {
-    getCurrentChannelId: state => state.currentChannelId,
-    getCurrentChannelUrl: state => state.currentChannelUrl,
+    getCurrentChannel: state => state.currentChannel,
     getIsPlaying: state => state.isPlaying,
     getVolume: state => state.volume
   },
@@ -24,9 +27,8 @@ export default new Vuex.Store({
     changeVolume (state, integer) {
       state.volume = integer
     },
-    updateChannel (state, { newId, newUrl }) {
-      state.currentChannelId = newId
-      state.currentChannelUrl = newUrl
+    updateChannel (state, newChannel) {
+      state.currentChannel = newChannel
     }
   },
   actions: {

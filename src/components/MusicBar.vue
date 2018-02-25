@@ -1,17 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="musicBar">
     <v-bottom-nav absolute :value="true" tile>
-      <v-list-tile-content grid-list-md>
-         <v-list-tile-title>
-           {{ currentChannel.name }}
-         </v-list-tile-title>
-         <v-list-tile-sub-title>
-           <metadata :hasMetadata="currentChannel.hasMetadata" />
-         </v-list-tile-sub-title>
-      </v-list-tile-content>
       <v-list-tile-action>
         <v-btn flat v-on:click="setMinVolume">
-          <v-icon>volume_mute</v-icon>
+            <v-icon>volume_mute</v-icon>
         </v-btn>
       </v-list-tile-action>
       <v-list-tile-content>
@@ -33,7 +25,6 @@
 </template>
 
 <script>
-import Metadata from '@/components/Metadata'
 import axios from 'axios'
 import {Howl, Howler} from 'howler'
 
@@ -55,9 +46,6 @@ export default {
     isPlaying () {
       return this.$store.getters.getIsPlaying
     }
-  },
-  components: {
-    Metadata
   },
   methods: {
     togglePlayPause () {
@@ -92,14 +80,14 @@ export default {
     }
   },
   created: function () {
-    axios.get(process.env.API_URL + '/api/Channel/' + this.$store.getters.getCurrentChannelId)
+    axios.get(process.env.API_URL + '/api/Channel/' + this.$store.getters.getCurrentChannel.id)
       .then((response) => {
         this.currentChannel.name = response.data.channelName
         this.currentChannel.id = response.data.id
         this.currentChannel.url = response.data.channelUrl
         this.currentChannel.hasMetadata = response.data.hasMetadata
 
-        this.$store.commit('updateChannel', {'newId': this.currentChannel.id, 'newUrl': this.currentChannel.url})
+        this.$store.commit('updateChannel', this.currentChannel)
         this.initializePlayer()
       })
       .catch((error) => {
