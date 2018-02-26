@@ -1,4 +1,5 @@
 <template>
+<v-container fill-height>
   <v-layout align-center>
     <v-flex xs12 sm6 offset-sm3>
       <v-card>
@@ -9,7 +10,7 @@
             </p>
           </h3>
         </v-card-text>
-        <v-card-media src="/static/tanya.png" style="height: 300px" />
+        <v-card-media src="/static/tanya.png" height="300px"/>
         <v-card-text>
           <h3 class="headline mb-0">
             <p class="text-xs-center">
@@ -20,6 +21,7 @@
       </v-card>
     </v-flex>
   </v-layout>
+</v-container>
 </template>
 
 <script>
@@ -38,4 +40,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.container {
+  max-width: 950px;
+}
+
+</style>
