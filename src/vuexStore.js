@@ -8,16 +8,18 @@ export default new Vuex.Store({
     currentChannel: {
       name: 'RPGamers Network Radio',
       url: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
-      id: 3,
+      id: 1,
       hasMetadata: true
     },
     isPlaying: false,
-    volume: 0.15
+    volume: 0.15,
+    isUserMobile: false
   },
   getters: {
     getCurrentChannel: state => state.currentChannel,
     getIsPlaying: state => state.isPlaying,
-    getVolume: state => state.volume
+    getVolume: state => state.volume,
+    getIsUserMobile: state => state.getIsUserMobile
   },
   mutations: {
     togglePlaying (state, bool) {
@@ -29,6 +31,9 @@ export default new Vuex.Store({
     },
     updateChannel (state, newChannel) {
       state.currentChannel = newChannel
+    },
+    updateIsUserMobile (state, boolean) {
+      state.isUserMobile = boolean
     }
   },
   actions: {
@@ -40,6 +45,9 @@ export default new Vuex.Store({
     },
     updateChannel: (context, payload) => {
       context.commit('updateChannel', payload)
+    },
+    updateIsUserMobile: (context, payload) => {
+      context.commit('updateIsUserMobile', payload)
     }
   }
 })

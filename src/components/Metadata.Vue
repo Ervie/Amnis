@@ -1,5 +1,5 @@
 <template>
-<div v-if="hasMetadata" v-text="songTitle">}  </div>
+<div v-if="hasMetadata" v-text="songTitle"></div>
 </template>
 
 <script>
