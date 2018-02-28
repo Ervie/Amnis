@@ -1,6 +1,6 @@
 <template>
   <div class="musicBar">
-    <v-bottom-nav absolute :value="true" tile>
+    <v-bottom-nav absolute fixed :value="true" tile>
       <v-list-tile-action>
         <v-btn flat v-on:click="setMinVolume">
             <v-icon>volume_mute</v-icon>
@@ -32,12 +32,6 @@ export default {
   name: 'MusicBar',
   data () {
     return {
-      currentChannel: {
-        name: '',
-        url: '',
-        id: -1,
-        hasMetadata: true
-      },
       volumeBar: this.$store.getters.getVolume * 100,
       sound: new Howl({src: ['']})
     }
@@ -45,6 +39,9 @@ export default {
   computed: {
     isPlaying () {
       return this.$store.getters.getIsPlaying
+    },
+    currentChannel () {
+      return this.$store.getters.getCurrentChannel
     }
   },
   methods: {
@@ -66,7 +63,7 @@ export default {
     },
     initializePlayer () {
       this.sound = new Howl({
-        src: [this.currentChannel.url],
+        src: [this.currentChannel.channelUrl],
         ext: ['mp3'],
         html5: true
       })
@@ -77,22 +74,22 @@ export default {
     volumeBar: function (newVal, oldVal) {
       this.$store.commit('changeVolume', newVal / 100)
       Howler.volume(this.volumeBar / 100)
+    },
+    currentChannel: function (newVal, oldVal) {
+      this.sound.unload()
+      this.$store.dispatch('togglePlaying', false)
+      this.initializePlayer()
     }
   },
   created: function () {
     axios.get(process.env.API_URL + '/api/Channel/' + this.$store.getters.getCurrentChannel.id)
       .then((response) => {
-        this.currentChannel.name = response.data.channelName
-        this.currentChannel.id = response.data.id
-        this.currentChannel.url = response.data.channelUrl
-        this.currentChannel.hasMetadata = response.data.hasMetadata
-
-        this.$store.commit('updateChannel', this.currentChannel)
+        this.$store.commit('updateChannel', response.data)
         this.initializePlayer()
       })
       .catch((error) => {
         console.log(error)
-        this.currentChannel.name = ''
+        this.currentChannel.channelName = ''
       })
   }
 }

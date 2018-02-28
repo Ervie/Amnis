@@ -34,5 +34,23 @@
         "ChannelName": "Nightwave Plaza",
         "ChannelUrl": "https://plaza.one/mp3",
         "HasMetadata": "true"
-    }   
+    },
+    {
+        "Id" : 7,
+        "ChannelName": "Antyradio",
+        "ChannelUrl": "http://n-1-3.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx?audio=5",
+        "HasMetadata": "false"
+    },
+    {
+        "Id" : 8,
+        "ChannelName": "RMF Classic",
+        "ChannelUrl": "http://195.150.20.243:8000/rmf_classic",
+        "HasMetadata": "true"
+    },
+    {
+        "Id": 9,
+        "ChannelName": "Gensokyo Radio",
+        "ChannelUrl": "http://gensokyoradio.net:8000/1/listen.mp3",
+        "HasMetadata": "true"
+    }
 ]

@@ -46,7 +46,7 @@ namespace API.Utilities
                 for (int i = 1; i < metadataChunks.Length - 1; i++)
                 {
                     // Some channel contain extra expendable informations at the end
-                    if (metadataChunks[i].Equals(";StreamUrl="))
+                    if (metadataChunks[i].Equals(";StreamUrl=") || metadataChunks[i].Equals(";StreamNext="))
                         break;
 
                     channelMetadata += metadataChunks[i];

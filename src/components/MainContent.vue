@@ -6,7 +6,7 @@
         <v-card-text>
           <h3 class="headline mb-0">
             <p class="text-xs-center">
-              {{ currentChannel.name }}
+              {{ currentChannel.channelName }}
             </p>
           </h3>
         </v-card-text>

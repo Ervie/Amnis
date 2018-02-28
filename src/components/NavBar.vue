@@ -1,9 +1,19 @@
 <template>
 <div>
     <v-toolbar fixed dense>
+        <v-toolbar-items>
+            <v-btn flat router to="/">
+                Main
+            </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-items>
+            <v-btn flat router to="/Catalog">
+                Catalog
+            </v-btn>
+        </v-toolbar-items>
         <v-spacer> </v-spacer>
         <v-toolbar-items>
-            <v-btn flat @click="aboutDialog = true">
+            <v-btn class="hidden-xs-only" flat @click="aboutDialog = true">
                 About
             </v-btn>
         </v-toolbar-items>

@@ -1,7 +1,7 @@
 <template>
   <v-app id="v-app" dark>
     <app-navbar/>
-    <router-view />
+    <router-view id="router-view" />
     <app-musicbar/>
   </v-app>
 </template>
@@ -46,5 +46,10 @@ export default {
   color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#router-view {
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 </style>

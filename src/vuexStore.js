@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentChannel: {
-      name: 'RPGamers Network Radio',
-      url: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
-      id: 1,
+      channelName: 'RPGamers Network Radio',
+      channelUrl: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
+      id: 3,
       hasMetadata: true
     },
     isPlaying: false,
@@ -19,12 +19,11 @@ export default new Vuex.Store({
     getCurrentChannel: state => state.currentChannel,
     getIsPlaying: state => state.isPlaying,
     getVolume: state => state.volume,
-    getIsUserMobile: state => state.getIsUserMobile
+    getIsUserMobile: state => state.isUserMobile
   },
   mutations: {
     togglePlaying (state, bool) {
-      if (bool) state.isPlaying = bool
-      else state.isPlaying = !state.isPlaying
+      state.isPlaying = bool
     },
     changeVolume (state, integer) {
       state.volume = integer
