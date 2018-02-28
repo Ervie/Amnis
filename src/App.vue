@@ -49,7 +49,7 @@ export default {
 }
 
 #router-view {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 </style>

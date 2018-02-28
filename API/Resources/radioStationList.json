@@ -13,7 +13,7 @@
     },
     {
         "Id": 3,
-        "ChannelName": "RPGamers Network Radio",
+        "ChannelName": "RPGNetwork Radio",
         "ChannelUrl": "http://stream.rpgamers.net:8000/rpgn?_=1428837997C",
         "HasMetadata": "true"
     },
@@ -52,5 +52,18 @@
         "ChannelName": "Gensokyo Radio",
         "ChannelUrl": "http://gensokyoradio.net:8000/1/listen.mp3",
         "HasMetadata": "true"
+    },
+    {
+        "Id": 10,
+        "ChannelName": "Xenon Radio",
+        "ChannelUrl": "http://stream.xenonradio.com:8000/XenonRadio_192",
+        "HasMetadata": "true"
+    },
+    {
+        "Id": 11,
+        "ChannelName": "Touhou Radio",
+        "ChannelUrl": "http://37.59.41.178:8000/touhouradio.mp3",
+        "HasMetadata": "true"
     }
+
 ]

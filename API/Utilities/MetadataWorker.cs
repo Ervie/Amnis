@@ -1,3 +1,4 @@
+using API.Model;
 using System;
 using System.IO;
 using System.Net;
@@ -7,7 +8,7 @@ namespace API.Utilities
 {
     public static class MetadataWorker
     {
-        public static string SendRequest(string channelUrl)
+        public static SongMetadata SendRequest(string channelUrl)
         {
             Stream socketStream = null;
             try
@@ -36,7 +37,7 @@ namespace API.Utilities
 
                 // Empty header - sometimes it just happens, not really an issue
                 if (string.IsNullOrWhiteSpace(metadataHeader))
-                    return string.Empty;
+                    return new SongMetadata();
 
                 string[] metadataChunks = metadataHeader.Split('\'');
 
@@ -50,13 +51,16 @@ namespace API.Utilities
                         break;
 
                     channelMetadata += metadataChunks[i];
+                    channelMetadata += "'";
                 }
+
+                channelMetadata = WebUtility.HtmlDecode(channelMetadata.TrimEnd('\''));
                 
-                return channelMetadata;
+                return new SongMetadata(channelMetadata);
             }
             catch (Exception)
             {
-                return string.Empty;
+                return new SongMetadata();
             }
         }
 

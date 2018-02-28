@@ -1,6 +1,6 @@
 <template>
   <div class="musicBar">
-    <v-bottom-nav absolute fixed :value="true" tile>
+    <v-bottom-nav fixed :value="true" tile>
       <v-list-tile-action>
         <v-btn flat v-on:click="setMinVolume">
             <v-icon>volume_mute</v-icon>

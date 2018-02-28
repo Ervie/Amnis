@@ -26,18 +26,18 @@ namespace API.Controllers
 
         // GET api/metadata
         [HttpGet]
-        public string Get()
+        public ActionResult Get()
         {
-            return MetadataWorker.SendRequest("http://radio.vgmradio.com:8040/stream");
+            return Json(MetadataWorker.SendRequest("http://radio.vgmradio.com:8040/stream"));
         }
 
         // GET api/metadata/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult Get(int id)
         {
             RadioStation selectedStation = _radioStations.FirstOrDefault(x => x.Id.Equals(id));
 
-            return selectedStation == null ? string.Empty : MetadataWorker.SendRequest(selectedStation.ChannelUrl);
+            return Json(selectedStation == null ? new SongMetadata() : MetadataWorker.SendRequest(selectedStation.ChannelUrl));
         }
 
         // POST api/metadata
