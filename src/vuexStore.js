@@ -9,7 +9,8 @@ export default new Vuex.Store({
       channelName: 'RPGamers Network Radio',
       channelUrl: 'http://stream.rpgamers.net:8000/rpgn?_=1428837997C',
       id: 3,
-      hasMetadata: true
+      hasMetadata: true,
+      logoUrl: ''
     },
     isPlaying: false,
     volume: 0.15,

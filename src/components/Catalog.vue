@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex v-for="channel in channels" :key="`${channel.id}`" v-on:click="changeChannel(channel.id)">
         <v-card dark width="160px" class="catalogEntry" v-bind:class="{selected: channel.id === currentChannel.id}">
-          <v-card-media :src="'static/radioLogos/' + channel.id + '.png'" height="150px"></v-card-media>
+          <v-card-media :src="channel.logoUrl + '.png'" height="150px"></v-card-media>
           <v-card-text class="px-0">{{channel.channelName}}</v-card-text>
         </v-card>
       </v-flex>

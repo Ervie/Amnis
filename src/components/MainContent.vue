@@ -9,7 +9,7 @@
             <p class="text-xs-center" v-else v-text="currentChannel.channelName" />
           </h3>
         </v-card-text>
-        <v-card-media v-bind:src="pathToLogo" height="300px"/>
+        <v-card-media v-bind:src="currentChannel.logoUrl + '.png'" height="300px"/>
         <v-card-text>
           <h3 class="headline mb-0">
             <p class="text-xs-center" v-if="currentChannel.hasMetadata" v-text="songTitle" />
@@ -35,9 +35,6 @@ export default {
   computed: {
     currentChannel () {
       return this.$store.getters.getCurrentChannel
-    },
-    pathToLogo () {
-      return 'static/radioLogos/' + this.currentChannel.id + '.png'
     }
   },
   methods: {
