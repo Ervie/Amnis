@@ -23,16 +23,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-## API
-``` bash
-# navigate to API folder
-cd API
-
-# restore dependencies
-dotnet restore
-
-# compile and run project at localhost:58472
-dotnet run
-
-```
