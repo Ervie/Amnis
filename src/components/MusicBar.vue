@@ -77,8 +77,11 @@ export default {
     },
     currentChannel: function (newVal, oldVal) {
       this.sound.unload()
-      this.$store.dispatch('togglePlaying', false)
       this.initializePlayer()
+
+      if (this.isPlaying) {
+        this.sound.play()
+      }
     }
   },
   created: function () {
